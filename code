@@ -1,0 +1,81 @@
+//show which pins those LEDs are attached to
+int led_1 = 3;
+int led_2 = 5;
+int led_3 = 9;
+int led_4 = 10;
+int led_5 = 11;
+int led_6 = 6;
+int led_7 = 13;
+
+//show how bright each LED is at the start point
+int brightness_1 = 0;
+int brightness_2 = 30;
+int brightness_3 = 60;
+int brightness_4 = 90;
+int brightness_5 = 120;
+int brightness_6 = 150;
+int brightness_7 = 180;
+
+//these are fade amount variables showing how many points to fade the LEDs by
+int fadeAmount_1 = 3;
+int fadeAmount_2 = 3;
+int fadeAmount_3 = 3;
+int fadeAmount_4 = 3;
+int fadeAmount_5 = 3;
+int fadeAmount_6 = 3;
+int fadeAmount_7 = 3;
+
+void setup() {
+  //declare used pins as outputs
+  pinMode(led_1, OUTPUT);
+  pinMode(led_2, OUTPUT);
+  pinMode(led_3, OUTPUT);
+  pinMode(led_4, OUTPUT);
+  pinMode(led_5, OUTPUT);
+  pinMode(led_6, OUTPUT);
+  pinMode(led_7, OUTPUT);
+
+}
+
+void loop() {
+  //set the brightness of pins individually
+  analogWrite(led_1, brightness_1);
+  analogWrite(led_2, brightness_2);
+  analogWrite(led_3, brightness_3);
+  analogWrite(led_4, brightness_4);
+  analogWrite(led_5, brightness_5);
+  analogWrite(led_6, brightness_6);
+  analogWrite(led_7, brightness_7);
+
+  //change the brightness for the next time through the loop
+  brightness_1 = brightness_1 + fadeAmount_1;
+  brightness_2 = brightness_2 + fadeAmount_2;
+  brightness_3 = brightness_3 + fadeAmount_3;
+  brightness_4 = brightness_4 + fadeAmount_4;
+  brightness_5 = brightness_5 + fadeAmount_5;
+  brightness_6 = brightness_6 + fadeAmount_6;
+  brightness_7 = brightness_7 + fadeAmount_7;
+
+  //reverse the direction of the fading at the ends of each fade
+  if (brightness_1 == 0 || brightness_1 == 255) {
+    fadeAmount_1 = -fadeAmount_1;
+    }else if (brightness_2 == 0 || brightness_2 == 255) {
+      fadeAmount_2 = -fadeAmount_2;
+    }else if (brightness_3 ==0 || brightness_3 == 255) {
+      fadeAmount_3 = -fadeAmount_3;
+    }else if (brightness_4 ==0 || brightness_4 == 255) {
+      fadeAmount_4 = -fadeAmount_4;
+    }else if (brightness_5 ==0 || brightness_5 == 255) {
+      fadeAmount_5 = -fadeAmount_5;
+    }else if (brightness_6 ==0 || brightness_6 == 255) {
+      fadeAmount_6 = -fadeAmount_6;
+    }else if (brightness_7 ==0 || brightness_7 == 255) {
+      fadeAmount_7 = fadeAmount_7;//keep the sun shinning
+    }
+
+    //wait for 30 millisecs to see the fading/dimming effect
+    delay(50);
+}
+
+//reference1: https://www.arduino.cc/en/Tutorial/AnalogWriteMega
+//r2:https://www.youtube.com/watch?v=-apGA_8SmxY
